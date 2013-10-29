@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+    <h2> Search Results For "<%= results %>" </h2>
+
+    Airport Search Term : <form action="airport" method="post"><input type="text" name="value" value="<%= results %>" /><input type="submit"/></form><p/>
+
+    <% for(var i=0; i<searchItems.length; i++) {%>
+   <li><%= searchItems[i].itemName %> <br/>
+   	<a target="gmap" href="https://maps.google.com/maps?q=<%= searchItems[i].lat %>,<%= searchItems[i].lon %>">
+<img src="http://maps.googleapis.com/maps/api/staticmap?center=<%= searchItems[i].lat %>,<%= searchItems[i].lon %>&zoom=11&size=400x400&sensor=false">
+</a>
+   </li>
+<% } %>
+  </body>
+</html>

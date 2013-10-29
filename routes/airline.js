@@ -1,34 +1,32 @@
 
 
-exports.encode = function(req, res){
+exports.index = function(req, res){
 
-	var vals = 'abcdefghijklmnopqrstuvwxyz';
+	res.render('airport', { searchItems: [] });
+};
 
-	var map = [];
 
-	for (i=0;i<vals.length;i++) {
-		var x = vals.charAt(i);
-		var y = vals.charAt((i+13) % 26);
 
-		map[x] = y;
-		map[x.toUpperCase()] = y.toUpperCase();
-	}
+exports.index = function(req, response){
+
+
+request = require('request-json');
+var client = request.newClient('http://www.priceline.com/svcs/ac/index/hotels/');
 
 	var value = req.body;
 	console.log(value);
 	value = value.value;
 	if(value != undefined) {
-		var temp = value.split("");
-		for (var i=0;i<temp.length;i++) {
-			if ((temp[i] >= 'a' && temp[i] <= 'z') || (temp[i] >= 'A' && temp[i] <= 'Z')) {
-				temp[i] = map[temp[i]];
-			} 
-		}
-		var results = temp.join("");	
 
-  		res.render('index', { title: 'Encode', results: results });
+client.get(value + '/0/10/0/0', function(err, res, body) {
+		response.render('airport', { searchItems: body.searchItems , results: value});
+
+});
 	} else {
-		res.render('index', { title: 'Encode', results: "" });
+				response.render('airport', { searchItems: [], results: "" });
+
 	}
+
+
 
 };

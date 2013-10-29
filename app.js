@@ -6,6 +6,7 @@
 var express = require('express');
 var routes = require('./routes');
 var rot13 = require('./routes/rot13.js');
+var airline = require('./routes/airline.js');
 var http = require('http');
 var path = require('path');
 
@@ -24,7 +25,7 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://fb:fb@mongo.onmodulus.net:27017/Imada7me');
+//mongoose.connect('mongodb://fb:fb@mongo.onmodulus.net:27017/Imada7me');
 
 // development only
 if ('development' == app.get('env')) {
@@ -33,6 +34,8 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.post('/encode', rot13.encode);
+app.get('/airport', airline.index);
+app.post('/airport', airline.index);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
