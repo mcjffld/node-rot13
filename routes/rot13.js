@@ -3,8 +3,8 @@
 exports.encode = function(req, res){
 
 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://fb:fb@mongo.onmodulus.net:27017/Imada7me');
+//var mongoose = require('mongoose');
+//mongoose.connect('mongodb://fb:fb@mongo.onmodulus.net:27017/Imada7me');
 
 	var vals = 'abcdefghijklmnopqrstuvwxyz';
 
