@@ -5,9 +5,14 @@
   </head>
   <body>
 
-    <h2> Search Results For "<%= results %>" </h2>
+Enter a search term to locate airports.
+<p/>
+<form action="airport" method="post">
+    Airport Search Term : <input type="text" name="value" value="<%= results %>" /><input type="submit"/></form><p/>
 
-    Airport Search Term : <form action="airport" method="post"><input type="text" name="value" value="<%= results %>" /><input type="submit"/></form><p/>
+<% if (results) { %>
+    <h2> Search Results For "<%= results %>" </h2>
+<% } %>
 
     <% for(var i=0; i<searchItems.length; i++) {%>
    <li><%= searchItems[i].itemName %> <br/>
